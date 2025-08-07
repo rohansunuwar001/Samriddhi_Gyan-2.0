@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import AIAssistant from "./components/AIAssistant";
-import BlogPage from "./components/BlogPage";
+import BlogPage from "./components/Blog/BlogPage";
+import SingleBlogPage from "./components/Blog/SingleBlogPage";
 import ForumPage from "./components/ForumPage";
 import HowItWorks from "./components/HowItWorks";
 import LmsShowcase from "./components/LmsShowcase";
@@ -14,9 +15,13 @@ import PurchaseCourseProtectedRoute from "./components/PurchaseCourseProtectedRo
 import { ThemeProvider } from "./components/ThemeProvider";
 import TrustedBySection from "./components/home/TrustedBySction";
 import MainLayout from "./layout/MainLayout";
+import About from "./pages/About/About";
 import GoogleSuccess from "./pages/GoogleSuccess";
 import Login from "./pages/Login";
-import ProfileEdit from "./pages/ProfileEdit";
+import AccountSecurityPage from "./pages/Profile/AccountSecurityPage";
+import PhotoPage from "./pages/Profile/PhotoPage";
+import Profile from "./pages/Profile/Profile";
+import ProfileEdit from "./pages/Profile/ProfileEdit";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/admin/Dashboard";
 import Sidebar from "./pages/admin/Sidebar";
@@ -32,7 +37,7 @@ import HeroSection from "./pages/student/HeroSection";
 import MyLearning from "./pages/student/MyLearning";
 import RecommendedCourse from "./pages/student/RecommendedCourse";
 import SearchPage from "./pages/student/SearchPage";
-import Profile from "./pages/student/Profile";
+import Contact from "./pages/Contact/Contact";
 
 const appRouter = createBrowserRouter([
   {
@@ -60,6 +65,22 @@ const appRouter = createBrowserRouter([
         ),
       },
       {
+        path: "/about",
+        element: (
+          <>
+            <About />
+          </>
+        ),
+      },
+      {
+        path: "/contact",
+        element: (
+          <>
+            <Contact />
+          </>
+        ),
+      },
+      {
         path: "/blog",
         element: (
           <>
@@ -67,7 +88,15 @@ const appRouter = createBrowserRouter([
           </>
         ),
       },
-       {
+      {
+        path: "/blog/:slug",
+        element: (
+          <>
+            <SingleBlogPage />
+          </>
+        ),
+      },
+      {
         path: "/community",
         element: (
           <>
@@ -115,7 +144,7 @@ const appRouter = createBrowserRouter([
         path: "profile",
         element: (
           <ProtectedRoute>
-          <Profile />
+            <Profile />
           </ProtectedRoute>
         )
       },
@@ -124,6 +153,22 @@ const appRouter = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <ProfileEdit />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "profile/photo",
+        element: (
+          <ProtectedRoute>
+            <PhotoPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "profile/security",
+        element: (
+          <ProtectedRoute>
+            <AccountSecurityPage />
           </ProtectedRoute>
         ),
       },
