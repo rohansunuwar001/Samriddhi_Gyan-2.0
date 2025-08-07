@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Search, CreditCard, MonitorPlay, BarChart2, Sparkles, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
 
 // --- GSAP Plugin Registration ---
 // We must register the ScrollTrigger plugin to use it
@@ -130,10 +131,14 @@ const HowItWorks = () => {
         <div className="mt-24 text-center">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Ready to begin your journey?</h3>
             <p className="mt-2 text-gray-600 dark:text-gray-400">There`s no better time to start than now.</p>
+            <Link to="/courses" className="mt-6 inline-flex items-center justify-center px-6 py-3 bg-indigo-600 text-white text-lg font-semibold rounded-md hover:bg-indigo-700 transition-colors">
+              Browse Available Courses
+              </Link>
+{/* 
           <Button size="lg" className="mt-6 mx-auto group">
             Browse Available Courses
             <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          </Button> */}
         </div>
       </div>
        {/* Helper for Card border colors */}

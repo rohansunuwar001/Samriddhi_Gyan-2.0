@@ -12,10 +12,12 @@ import {
   ProtectedRoute,
 } from "./components/ProtectedRoutes";
 import PurchaseCourseProtectedRoute from "./components/PurchaseCourseProtectedRoute";
+import ScrollToTop from "./components/ScrollToTop";
 import { ThemeProvider } from "./components/ThemeProvider";
 import TrustedBySection from "./components/home/TrustedBySction";
 import MainLayout from "./layout/MainLayout";
 import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
 import GoogleSuccess from "./pages/GoogleSuccess";
 import Login from "./pages/Login";
 import AccountSecurityPage from "./pages/Profile/AccountSecurityPage";
@@ -37,12 +39,27 @@ import HeroSection from "./pages/student/HeroSection";
 import MyLearning from "./pages/student/MyLearning";
 import RecommendedCourse from "./pages/student/RecommendedCourse";
 import SearchPage from "./pages/student/SearchPage";
-import Contact from "./pages/Contact/Contact";
+import AnimatedErrorPage from "./AnimatedErrorPage";
+import HomeCourse from "./pages/Home/HomeCourse";
+// --- 1. Ensure this import is present and points to your new file ---
+
+
+const MainLayoutWithScroll = () => {
+  return (
+    <>
+      <ScrollToTop />
+      <MainLayout />
+    </>
+  );
+};
+
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <MainLayoutWithScroll />,
+    // --- 2. This is the crucial line that sets the error page for all child routes ---
+    errorElement: <AnimatedErrorPage />,
     children: [
       {
         path: "/",
@@ -50,7 +67,7 @@ const appRouter = createBrowserRouter([
           <>
             <HeroSection />
             <TrustedBySection />
-            <Courses />
+            <HomeCourse />
             <RecommendedCourse />
             <LmsShowcase />
           </>
@@ -58,59 +75,31 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/ai-assistant",
-        element: (
-          <>
-            <AIAssistant />
-          </>
-        ),
+        element: <AIAssistant />,
       },
       {
         path: "/about",
-        element: (
-          <>
-            <About />
-          </>
-        ),
+        element: <About />,
       },
       {
         path: "/contact",
-        element: (
-          <>
-            <Contact />
-          </>
-        ),
+        element: <Contact />,
       },
       {
         path: "/blog",
-        element: (
-          <>
-            <BlogPage />
-          </>
-        ),
+        element: <BlogPage />,
       },
       {
         path: "/blog/:slug",
-        element: (
-          <>
-            <SingleBlogPage />
-          </>
-        ),
+        element: <SingleBlogPage />,
       },
       {
         path: "/community",
-        element: (
-          <>
-            <ForumPage />
-          </>
-        ),
+        element: <ForumPage />,
       },
       {
         path: "/how-it-works",
-        element: (
-          <>
-            <HowItWorks />
-          </>
-        ),
+        element: <HowItWorks />,
       },
       {
         path: "login",
@@ -195,6 +184,14 @@ const appRouter = createBrowserRouter([
             <PurchaseCourseProtectedRoute>
               <CourseProgress />
             </PurchaseCourseProtectedRoute>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "courses",
+        element: (
+          <ProtectedRoute>
+            <Courses />
           </ProtectedRoute>
         ),
       },

@@ -217,7 +217,7 @@ const Navbar = () => {
                       <ul>
                         {results.courses.map((course) => (
                           <li key={course._id}>
-                            <Link to={`/course/${course._id}`} className="flex items-center gap-3 p-2 rounded-md text-gray-800 hover:bg-gray-100" onClick={() => setIsDropdownVisible(false)}>
+                            <Link to={`/course-detail/${course._id}`} className="flex items-center gap-3 p-2 rounded-md text-gray-800 hover:bg-gray-100" onClick={() => setIsDropdownVisible(false)}>
                               <img src={course.thumbnail} alt={course.title} className="w-11 h-11 object-cover bg-gray-200" />
                               <div className="flex flex-col">
                                 <span className="font-bold text-sm leading-tight">{course.title}</span>
